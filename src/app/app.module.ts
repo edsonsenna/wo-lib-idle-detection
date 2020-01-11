@@ -3,16 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IdleDetectDirective } from './idle-detect.directive';
+import { IdleDetectService } from './idle-detect.service';
+import { SessionExpiredComponent } from './session-expired/session-expired.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IdleDetectDirective,
+    SessionExpiredComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [IdleDetectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
