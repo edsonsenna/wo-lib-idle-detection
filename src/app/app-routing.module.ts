@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SessionExpiredComponent } from './session-expired/session-expired.component';
-import { HomeComponent } from './home/home.component';
+import { SessionExpiredComponent } from './components/session-expired/session-expired.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [

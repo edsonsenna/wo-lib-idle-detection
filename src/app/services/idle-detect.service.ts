@@ -16,9 +16,13 @@ export class IdleDetectService {
     this.idleDetector = new Subject();
   }
 
+  watcher() {
+    return this.idleDetector.asObservable();
+  }
+
   startTimer(timeInSeconds: number) {
 
-    console.log('Timer started to ', timeInSeconds, ' seconds...');
+    console.log('Timeout timer started and will expire in ', timeInSeconds, ' seconds...');
 
     this.timeInSeconds = timeInSeconds;
 
@@ -28,15 +32,22 @@ export class IdleDetectService {
       this.idleDetector.next(this.isSessionExpired);
     }, this.timeInSeconds);
 
-    return this.idleDetector.asObservable();
-
   }
 
   resetTimer() {
-    console.log('Restarting timeout...');
-    this.isSessionExpired = false;
+
+    if(!this.isSessionExpired) {
+
+      console.log('Restarting timeout timer...');
+      this.isSessionExpired = false;
+      this.stopTimer();
+      this.startTimer(this.timeInSeconds);
+    }
+
+  }
+
+  stopTimer() {
     clearTimeout(this.timer);
-    this.startTimer(this.timeInSeconds);
   }
 
 }

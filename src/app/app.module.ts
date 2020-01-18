@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IdleDetectDirective } from './idle-detect.directive';
-import { IdleDetectService } from './idle-detect.service';
-import { SessionExpiredComponent } from './session-expired/session-expired.component';
-import { HomeComponent } from './home/home.component';
+import { IdleDetectDirective } from './directives/idle-detect.directive';
+import { IdleDetectService } from './services/idle-detect.service';
+import { SessionExpiredComponent } from './components/session-expired/session-expired.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [

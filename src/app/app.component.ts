@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IdleDetectService } from './idle-detect.service';
+import { IdleDetectService } from './services/idle-detect.service';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +17,17 @@ export class AppComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.idleDetectService.startTimer(5000).subscribe((res) => {
-      console.log('Is session expired? ', res)
-      this.router.navigateByUrl('/sessionExpired');
+    console.log('onInit');
+    
+    this.idleDetectService.startTimer(5000);
+
+    this.idleDetectService.watcher().subscribe((res) => {
+      if( res ) {
+        console.log('Is session expired? ', res)
+        if(confirm('Your session has expired.')) {
+          this.router.navigateByUrl('/sessionExpired');
+        }
+      }
     });
   }
 }
